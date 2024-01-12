@@ -6,12 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Index</h1>
+    <main>
+        <h1 class="mindChapters-design">MindChapters</h1>
+        <p class="sub-header">Journaling for the masses</p>
 
-    <p>Welcome.</p>
+        <article class="flow">
+            <h2>Latest <span class="mindChapters-design">Chapters</span></h2>
+            <ul id="latest-chapters"></ul>
+            <div id="allChapters">
+                <a href="">All <span class="mindChapters-design">Chapters</span></a>
+            </div>
+        </article>
+
+        <form name="create-chapter" class="flow">
+            <h2>Create a <span class="mindChapters-design">Chapter</span></h2>
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input name="title" id="title" type="text" required />
+            </div>
+            <div class="form-control">
+                <label for="content">Content</label>
+                <textarea name="content" id="content" rows="8" required></textarea>
+            </div>
+            <button>Log</button>
+        </form>
+    </main>
 
     <script src="app.js"></script>
 </body>

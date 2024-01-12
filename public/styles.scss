@@ -1,3 +1,9 @@
+$background: #f1f1f0;
+$text: #af9a85;
+$header: #d2b8a9;
+$highlight: #f4ece5;
+$highlight2: #e3d5ca;
+
 *,
 *::before,
 *::after {
@@ -10,9 +16,102 @@
 
 html {
     font-size: calc(1rem + 0.5vw);
-    color-scheme: light dark;
+    background-color: $background;
+    color: $text;
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
 }
+
+input,
+button,
+textarea {
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    margin-bottom: 0.4rem;
+}
+
+button {
+    color: $header;
+    border: dotted 1px $highlight2;
+    border-radius: 10px;
+    padding: 0 0.4rem;
+    background-color: $highlight;
+}
+
+main {
+    width: min(60ch, 100% - 2rem);
+    margin-inline: auto;
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
+}
+
+h1,
+h2,
+.sub-header {
+    text-align: center;
+    color: $header;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: calc(1rem + 0.5vw);
+}
+
+.sub-header {
+    font-size: calc(0.6rem + 0.5vw);
+}
+
+.mindChapters-design {
+    font-family: 'Dancing Script', cursive;
+}
+
+.flow {
+    margin-block-start: 1.2em;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+}
+
+#latest-chapters {
+    list-style: none;
+    padding: 0;
+    margin: 0.2rem 0;
+}
+
+.chapter {
+    display: flex;
+    justify-content: space-between;
+    font-size: calc(0.7rem + 0.5vw);
+}
+
+a {
+    color: $header;
+    text-decoration: none;
+    border: dotted 1px $highlight2;
+    border-radius: 10px;
+    padding: 0 0.2rem;
+    background-color: $highlight;
+}
+
+#allChapters {
+    text-align: right;
+    font-size: calc(0.7rem + 0.5vw);
+}
+
+#createChapter {
+    text-align: center;
+    font-size: calc(0.9rem + 0.5vw);
+}
+
+// form[name=create-chapter] {
+//     display: none;
+
+//     .logged-in & {
+//         display: revert;
+//     }
+// }
