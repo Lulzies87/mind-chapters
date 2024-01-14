@@ -1,7 +1,7 @@
 $background: #f1f1f0;
 $text: #af9a85;
 $header: #d2b8a9;
-$highlight: #f4ece5;
+$highlight: #f7f0ea;
 $highlight2: #e3d5ca;
 
 *,
@@ -39,6 +39,7 @@ button {
     border-radius: 10px;
     padding: 0 0.4rem;
     background-color: $highlight;
+    cursor: pointer;
 }
 
 main {
