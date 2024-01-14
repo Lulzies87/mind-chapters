@@ -9,6 +9,30 @@ const app = express();
 
 app.use(json());
 
+app.get("/api/chapters", async (req, res, next) => {
+  // Go to a page with a list of all chapters.
+  try {
+    const chapters = await Chapter.find({}, undefined, {
+      sort: { timePosted: "desc" },
+    });
+
+
+    res.status(200);
+    res.send(chapters);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+app.get("/api/chapters/:chapterId", (req, res) => {
+  // Show details of a specific chapter.
+});
+
+app.get("/api/chapters/:userId", (req, res) => {
+  // Show a chapters list of a specific user.
+});
+
 app.post("/api/chapters", async (req, res, next) => {
   const { author, title, content, timePosted } = req.body;
 
@@ -34,6 +58,13 @@ app.post("/api/chapters", async (req, res, next) => {
   }
 });
 
+app.patch("/api/chapters/:chapterId");
+
+// More ideas:
+// Like a chapter, show number of likes on chapter.
+// Edit chapter.
+//
+
 app.use(express.static("public"));
 
 const server = createServer(app);
@@ -47,7 +78,8 @@ async function startServer() {
   await mongoose.connect(process.env.CONN_STRING, {
     dbName: "mind-chapters",
   });
+
+  server.listen(port, () => console.log(`Listening on port ${port}`));
 }
 
-server.listen(port, () => console.log(`Listening on port ${port}`));
 startServer();

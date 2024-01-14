@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose"
+import { Schema, Types, model } from "mongoose";
 interface Chapter {
     author: string;
     title: string;
@@ -7,10 +7,10 @@ interface Chapter {
 }
 
 const schema = new Schema<Chapter>({
+    timePosted: { type: Schema.Types.Date, default: () => new Date() },
     author: { type: String, required: true },
     title: { type: String, required: true },
     content: { type: String, required: true },
-    timePosted: { type: Date, immutable: true, required: true }
     }
 );
 
