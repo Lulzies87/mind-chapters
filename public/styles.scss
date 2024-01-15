@@ -64,6 +64,11 @@ h2 {
     padding: 0 0.2rem;
     background-color: $highlight;
     cursor: pointer;
+
+    &.liked {
+        background-color: rgb(224, 245, 235);
+        content: 'Liked';
+    }
 }
 
 .top-items {
