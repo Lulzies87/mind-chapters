@@ -4,5 +4,5 @@
     "module": "NodeNext",
     "esModuleInterop": true,
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "public/chapter-details.ts"]
 }

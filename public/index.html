@@ -14,15 +14,18 @@
 </head>
 
 <body>
+    <header>
+        <p id="username"></p>
+    </header>
     <main>
         <h1 class="mindChapters-design">MindChapters</h1>
         <p class="sub-header">Journaling for the masses</p>
 
         <article class="flow">
             <h2>Latest <span class="mindChapters-design">Chapters</span></h2>
-            <ul id="latest-chapters"></ul>
+            <ul id="chapters-list"></ul>
             <div id="allChapters">
-                <a href="">All <span class="mindChapters-design">Chapters</span></a>
+                <a class="buttons" href="/chapters.html">All <span class="mindChapters-design">Chapters</span></a>
             </div>
         </article>
 
@@ -36,11 +39,11 @@
                 <label for="content">Content</label>
                 <textarea name="content" id="content" rows="8" required></textarea>
             </div>
-            <button>Log</button>
+            <button class="buttons">Log</button>
         </form>
     </main>
 
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 
 </html>

@@ -4,66 +4,36 @@ import express from "express";
 import { json } from "body-parser";
 import mongoose from "mongoose";
 import { Chapter } from "./chapters.model";
+import cookieParser from "cookie-parser";
+import { User } from "./user.model";
+import { router as authRouter } from "./auth.router";
+import { router as chaptersRouter } from "./chapters.router";
 
+export const sessionCookieName = "userId";
 const app = express();
 
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(json());
 
-app.get("/api/chapters", async (req, res, next) => {
-  // Go to a page with a list of all chapters.
+app.use("/api/auth", authRouter);
+
+app.get("/api/currentUser", async (req, res, next) => {
   try {
-    const chapters = await Chapter.find({}, undefined, {
-      sort: { timePosted: "desc" },
-    });
+      const user = await getUser(req.signedCookies[sessionCookieName]);
 
-
-    res.status(200);
-    res.send(chapters);
+      res.status(200);
+      res.json(user);
   } catch (error) {
-    console.error(error);
-    next(error);
+      console.error(error);
+      next(error);
   }
 });
 
-app.get("/api/chapters/:chapterId", (req, res) => {
-  // Show details of a specific chapter.
-});
-
-app.get("/api/chapters/:userId", (req, res) => {
-  // Show a chapters list of a specific user.
-});
-
-app.post("/api/chapters", async (req, res, next) => {
-  const { author, title, content, timePosted } = req.body;
-
-  try {
-    if (!title || !content) {
-      res.status(400);
-      res.send("Must provide title and content");
-      return;
-    }
-
-    await Chapter.create({
-      author,
-      title,
-      content,
-      timePosted,
-    });
-
-    res.status(201);
-    res.end();
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
-});
-
-app.patch("/api/chapters/:chapterId");
+app.use("/api/chapters", chaptersRouter);
 
 // More ideas:
 // Like a chapter, show number of likes on chapter.
 // Edit chapter.
-//
 
 app.use(express.static("public"));
 
@@ -83,3 +53,16 @@ async function startServer() {
 }
 
 startServer();
+
+async function getUser(userId: string) {
+  if (!userId) {
+      return null;
+  }
+  const user = await User.findById(userId);
+
+  if (!user) {
+      throw new Error();
+  }
+
+  return user;
+}
