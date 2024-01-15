@@ -12,8 +12,8 @@ import { router as chaptersRouter } from "./chapters.router";
 export const sessionCookieName = "userId";
 const app = express();
 
-app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(json());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.use("/api/auth", authRouter);
 
@@ -30,10 +30,6 @@ app.get("/api/currentUser", async (req, res, next) => {
 });
 
 app.use("/api/chapters", chaptersRouter);
-
-// More ideas:
-// Like a chapter, show number of likes on chapter.
-// Edit chapter.
 
 app.use(express.static("public"));
 

@@ -1,5 +1,5 @@
 import { Schema, Types, model } from "mongoose";
-interface Chapter {
+export interface Chapter {
     author: string;
     title: string;
     content: string;
