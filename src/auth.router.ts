@@ -26,7 +26,7 @@ router.post("/register", async (req, res, next) => {
 
     res.cookie(sessionCookieName, user._id, {
       httpOnly: true,
-      secure: false,
+      secure: true,
       signed: true,
       expires,
     });

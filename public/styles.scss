@@ -61,7 +61,7 @@ h2 {
     text-decoration: none;
     border: dotted 1px $highlight2;
     border-radius: 10px;
-    padding: 0 0.2rem;
+    padding: 0 0.3rem;
     background-color: $highlight;
     cursor: pointer;
 
@@ -75,4 +75,9 @@ h2 {
     display: flex;
     align-items: baseline;
     gap: 0.2rem;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
 }
