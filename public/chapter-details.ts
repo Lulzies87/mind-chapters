@@ -18,10 +18,10 @@ async function app() {
   }
 };
 
+app();
+
 async function getChapterDetails(chapterId: string): Promise<Chapter> {
   const res = await fetch(`/api/chapters/${chapterId}`);
 
   return res.json();
 }
-
-app();

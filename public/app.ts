@@ -47,9 +47,7 @@ interface SubmitEvent {
   target: HTMLFormElement;
 }
 
-document.forms
-  .namedItem("create-chapter")
-  ?.addEventListener("submit", async (e) => {
+document.forms.namedItem("create-chapter")?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
@@ -69,31 +67,4 @@ document.forms
     });
 
     window.location.reload();
-  });
-
-// document.getElementById("logoutBtn")?.addEventListener("click", async (e) => {
-//   e.preventDefault();
-
-//   try {
-//     await fetch("/logout", {
-//       method: "GET",
-//       credentials: "same-origin",
-//     });
-
-//     new Promise<void>((resolve) => {
-//       window.location.href = "/logout";
-//       resolve();
-//     }).then(() => {
-//       window.location.reload();
-//     });
-
-//   } catch (error) {
-//     console.error("An error occurred during logout", error);
-//   }
-// });
-
-// async function getJSON(path: string) {
-//   const res = await fetch(path);
-
-//   return await res.json();
-// }
+});

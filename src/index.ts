@@ -16,6 +16,7 @@ app.use(json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
 app.use("/api/auth", authRouter);
+app.use("/api/chapters", chaptersRouter);
 
 app.get("/api/currentUser", async (req, res, next) => {
   try {
@@ -28,8 +29,6 @@ app.get("/api/currentUser", async (req, res, next) => {
       next(error);
   }
 });
-
-app.use("/api/chapters", chaptersRouter);
 
 app.use(express.static("public"));
 
