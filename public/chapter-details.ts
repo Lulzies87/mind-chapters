@@ -1,6 +1,8 @@
-import { Chapter } from "./chapters.js";
+import { Chapter, redirectToLogin } from "./exports.js";
 
 async function app() {
+  redirectToLogin();
+
   const chapterId = window.location.hash.slice(1);
   const chapterDetails = await getChapterDetails(chapterId);
 

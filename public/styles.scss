@@ -65,3 +65,9 @@ h2 {
     background-color: $highlight;
     cursor: pointer;
 }
+
+.top-items {
+    display: flex;
+    align-items: baseline;
+    gap: 0.2rem;
+}

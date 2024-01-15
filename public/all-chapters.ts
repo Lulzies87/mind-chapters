@@ -1,9 +1,10 @@
-import { getJSON, renderChapters } from "./chapters.js";
+import { getJSON, redirectToLogin, renderChapters } from "./exports.js";
 
 async function app() {
-    const chapters = await getJSON("/api/chapters");
+  redirectToLogin();
 
-    renderChapters(chapters, chapters.length);
-  }
-  
-  app();
+  const chapters = await getJSON("/api/chapters");
+  renderChapters(chapters, chapters.length);
+}
+
+app();

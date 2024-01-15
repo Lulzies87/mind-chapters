@@ -1,8 +1,12 @@
+import { redirectHome } from "./exports.js";
+
+redirectHome();
+
 document.forms.namedItem("login")?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     try {
-        const formData = new FormData(e.target);
+        const formData = new FormData(e.target as HTMLFormElement);
         const body = JSON.stringify({
             username: formData.get("username"),
             password: formData.get("password")

@@ -1,6 +1,8 @@
-import { getJSON, renderChapters } from "./chapters.js";
+import { getJSON, redirectHome, redirectToLogin, renderChapters } from "./exports.js";
 
 async function app() {
+  redirectToLogin();
+
   const [user, chapters] = await Promise.all([
     getJSON("/api/currentUser"),
     getJSON("/api/chapters"),
@@ -14,7 +16,7 @@ async function app() {
     ?.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const formData = new FormData(e.target);
+      const formData = new FormData(e.target as HTMLFormElement);
       const body = JSON.stringify({
         author: user.username,
         title: (formData.get("title") as String).replaceAll("<", "&lt;"),
@@ -35,6 +37,8 @@ async function app() {
 }
 
 app();
+activateLogoutButton();
+redirectHome();
 
 function handleUser(user: any) {
   if (!user) {
@@ -42,9 +46,28 @@ function handleUser(user: any) {
   }
 
   document.body.classList.add("logged-in");
-  document.getElementById("username")!.textContent = `Welcome ${user.username}!`;
+  document.getElementById(
+    "username"
+  )!.textContent = `Welcome ${user.username}!`;
 }
 
-// interface SubmitEvent {
-//   target: HTMLFormElement;
-// }
+function activateLogoutButton() {
+  document.getElementById("logoutBtn")?.addEventListener("click", async () => {
+
+    try {
+      await fetch("/api/auth/logout", {
+        method: "GET",
+        credentials: "same-origin",
+      });
+
+      new Promise<void>((resolve) => {
+        window.location.href = "/api/auth/logout";
+        resolve();
+      }).then(() => {
+        window.location.reload();
+      });
+    } catch (error) {
+      console.error("An error occurred during logout", error);
+    }
+  });
+}

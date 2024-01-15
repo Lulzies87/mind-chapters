@@ -1,3 +1,6 @@
+import { redirectHome } from "./exports.js";
+
+redirectHome();
 interface SubmitEvent {
     target: HTMLFormElement;
 }
@@ -5,7 +8,7 @@ interface SubmitEvent {
 document.forms.namedItem("register")?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.target as HTMLFormElement);
     const body = JSON.stringify({
         email: formData.get("email"),
         username: formData.get("username"),
