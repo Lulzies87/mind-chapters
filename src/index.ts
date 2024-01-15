@@ -3,7 +3,7 @@ import { createServer } from "http";
 import express from "express";
 import { json } from "body-parser";
 import mongoose from "mongoose";
-import { Chapter } from "./chapters.model";
+// import { Chapter } from "./chapters.model";
 import cookieParser from "cookie-parser";
 import { User } from "./user.model";
 import { router as authRouter } from "./auth.router";

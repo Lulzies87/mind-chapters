@@ -22,6 +22,10 @@ html {
 
 body {
     font-family: 'Rajdhani', sans-serif;
+        width: min(60ch, 100% - 2rem);
+    margin-inline: auto;
+    margin-top: 1.6rem;
+    margin-bottom: 1.6rem;
 }
 
 input,
@@ -33,16 +37,8 @@ textarea {
     margin-bottom: 0.4rem;
 }
 
-main {
-    width: min(60ch, 100% - 2rem);
-    margin-inline: auto;
-    margin-top: 1.6rem;
-    margin-bottom: 1.6rem;
-}
-
 h1,
-h2,
-.sub-header {
+h2 {
     text-align: center;
     color: $header;
 }
@@ -50,10 +46,6 @@ h2,
 h2 {
     font-weight: normal;
     font-size: calc(1rem + 0.5vw);
-}
-
-.sub-header {
-    font-size: calc(0.6rem + 0.5vw);
 }
 
 .mindChapters-design {
@@ -64,23 +56,6 @@ h2 {
     margin-block-start: 1.2em;
 }
 
-.form-control {
-    display: flex;
-    flex-direction: column;
-}
-
-#chapters-list {
-    list-style: none;
-    padding: 0;
-    margin: 0.2rem 0;
-}
-
-.chapter {
-    display: flex;
-    justify-content: space-between;
-    font-size: calc(0.7rem + 0.5vw);
-}
-
 .buttons {
     color: $header;
     text-decoration: none;
@@ -89,19 +64,4 @@ h2 {
     padding: 0 0.2rem;
     background-color: $highlight;
     cursor: pointer;
-}
-
-#allChapters {
-    text-align: right;
-    font-size: calc(0.7rem + 0.5vw);
-}
-
-#createChapter {
-    text-align: center;
-    font-size: calc(0.9rem + 0.5vw);
-}
-
-.chapterLi {
-    color: $text;
-    text-decoration: none;
 }

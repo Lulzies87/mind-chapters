@@ -1,0 +1,38 @@
+$background: #f1f1f0;
+$text: #af9a85;
+$header: #d2b8a9;
+$highlight: #f7f0ea;
+$highlight2: #e3d5ca;
+
+.sub-header {
+    text-align: center;
+    color: $header;
+    font-size: calc(0.6rem + 0.5vw);
+}
+
+#allChapters {
+    text-align: right;
+    font-size: calc(0.7rem + 0.5vw);
+}
+
+.chapter {
+    display: flex;
+    justify-content: space-between;
+    font-size: calc(0.7rem + 0.5vw);
+}
+
+.chapterLi {
+    color: $text;
+    text-decoration: none;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+}
+
+#chapters-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.2rem 0;
+}

@@ -25,3 +25,8 @@ async function getChapterDetails(chapterId: string): Promise<Chapter> {
 
   return res.json();
 }
+
+function toggleLike() {
+      const likeButton = document.querySelector('.like-button') as HTMLButtonElement;
+      likeButton.classList.toggle('liked');
+}
