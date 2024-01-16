@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { createServer } from "http";
-import express from "express";
+import express, { ErrorRequestHandler, RequestHandler } from "express";
 import { json } from "body-parser";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
@@ -13,6 +13,12 @@ const app = express();
 
 app.use(json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
+
+const logRequests: RequestHandler = (req, res, next) => {
+  console.log(req.method, req.url, req.body);
+  next();
+};
+app.use(logRequests);
 
 app.use("/api/auth", authRouter);
 app.use("/api/chapters", chaptersRouter);
@@ -30,6 +36,17 @@ app.get("/api/currentUser", async (req, res, next) => {
 });
 
 app.use(express.static("public"));
+
+const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+  if (res.headersSent) {
+      next(err);
+  }
+
+  console.error(err);
+  res.status(500);
+  res.send("Something went wrong");
+};
+app.use(errorHandler);
 
 const server = createServer(app);
 const port = process.env.PORT ?? 3000;
@@ -60,3 +77,4 @@ async function getUser(userId: string) {
 
   return user;
 }
+

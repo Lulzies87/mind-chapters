@@ -4,6 +4,7 @@ export interface Chapter {
     title: string;
     content: string;
     timePosted: Date;
+    likes: string[];
 }
 
 const schema = new Schema<Chapter>({
@@ -11,6 +12,7 @@ const schema = new Schema<Chapter>({
     author: { type: String, required: true },
     title: { type: String, required: true },
     content: { type: String, required: true },
+    likes: { type: [String], default: [], required: false}
     }
 );
 

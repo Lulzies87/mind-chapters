@@ -1,9 +1,10 @@
-import { Chapter, redirectToLogin } from "./exports.js";
+import { Chapter, getJSON, redirectToLogin, saveLike } from "./exports.js";
 
 async function app() {
   redirectToLogin();
 
   const chapterId = window.location.hash.slice(1);
+  const userId = await getJSON("/api/currentUser");
   const chapterDetails = await getChapterDetails(chapterId);
 
   renderChapterField("content");
@@ -22,9 +23,18 @@ async function app() {
       (element) => (element.innerText = chapterDetails[field].toString())
     );
   }
+  
+  document.querySelector(".like-button")?.addEventListener("click", (e) => {
+    toggleLike(e.target, chapterId, userId);
+  });
+
+  // console.log(chapterDetails.likes)
+  document.getElementById("likes-amount")!.innerText = chapterDetails.likes.length.toString();
 }
 
 app();
+
+
 
 async function getChapterDetails(chapterId: string): Promise<Chapter> {
   const res = await fetch(`/api/chapters/${chapterId}`);
@@ -32,10 +42,8 @@ async function getChapterDetails(chapterId: string): Promise<Chapter> {
   return res.json();
 }
 
-document.querySelector(".like-button")?.addEventListener("click", (e) => {
-  toggleLike(e.target);
-});
 
-function toggleLike(likeButton: any) {
+async function toggleLike(likeButton: any, chapterId: string, userId: string) {
   likeButton.classList.toggle("liked");
+  await saveLike(chapterId, userId);
 }

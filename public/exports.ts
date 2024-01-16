@@ -3,6 +3,7 @@ export type Chapter = {
   title: string;
   content: string;
   timePosted: Date;
+  likes: string[];
 };
 
 export function renderChapters(chapters: any, amount: number) {
@@ -50,4 +51,17 @@ export async function redirectToLogin() {
     if (!user) {
       window.location.replace("/login.html");
     }
+}
+
+export async function saveLike(chapterId: string, user: string) {
+  const body = JSON.stringify({ user });
+
+  const response = await fetch(`/api/chapters/${chapterId}/likes`, {
+    method: "POST",
+    body,
+    headers: {
+      "Content-Type": "application/json",
+      "Content-Length": body.length.toString()
+    }
+  });
 }
