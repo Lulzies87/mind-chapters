@@ -28,7 +28,6 @@ async function app() {
     toggleLike(e.target, chapterId, userId);
   });
 
-  // console.log(chapterDetails.likes)
   document.getElementById("likes-amount")!.innerText = chapterDetails.likes.length.toString();
 }
 
